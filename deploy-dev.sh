@@ -8,6 +8,8 @@ git pull
 docker-compose down
 docker-compose up -d --force-recreate --build
 
+echo Deploy end
+
 
 # 定制镜像
 # docker build -t myapp:pm2 ./backend
