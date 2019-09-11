@@ -1,0 +1,28 @@
+{
+  "deploy": {
+    "packages": [
+      {
+        "files": ["**/*"],
+
+        "exclude": [
+          "node_modules/**",
+          ".git/**",
+          ".vscode/**",
+          "**/node_modules/**"
+        ],
+        "deployOnSave": false
+      }
+    ],
+    "targets": [
+      {
+        "type": "sftp",
+        "name": "AchieChiu",
+        "dir": "/root/source/docker_ci",
+        "host": "39.100.155.113",
+        "port": 22,
+        "user": "root",
+        "password": "Daydayup0530"
+      }
+    ]
+  }
+}
