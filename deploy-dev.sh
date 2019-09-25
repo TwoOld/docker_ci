@@ -1,7 +1,9 @@
 echo Deploy Project
 
 cd frontend/
+
 ls
+
 cd ..
 
 ls
