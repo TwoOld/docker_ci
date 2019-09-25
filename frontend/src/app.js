@@ -3,14 +3,12 @@ import Index from './pages/index'
 import './app.scss'
 import { Provider } from '@tarojs/mobx'
 
-
 import todoStore from './store/todo'
 import cartStore from './store/cart'
 
-
 const store = {
   todoStore,
-  cartStore
+  cartStore,
 }
 
 // 如果需要在 h5 环境中开启 React Devtools
@@ -24,28 +22,24 @@ if (process.env.NODE_ENV === 'production') {
 } else {
   global.url = 'http://localhost:3000/'
 }
-global.getData = (url) => {
-
+global.getData = url => {
   Taro.showLoading({
-    title: '加载中'
+    title: '加载中',
   })
   return Taro.request({
     url: global.url + url,
   }).then(res => {
-
     Taro.hideLoading({
-      title: '加载中'
+      title: '加载中',
     })
     if (res.statusCode == 200 && res.data.code == 0) {
       return res.data.data
-
     } else {
       Taro.showToast({
         title: '小老弟 出错了',
-        duration: 2000
+        duration: 2000,
       })
     }
-
   })
 }
 class App extends Component {
@@ -54,47 +48,45 @@ class App extends Component {
   //   iconPath: "./assets/cate.png",
   //   selectedIconPath: "./assets/cate-active.png",
   //   text: "分类"
-  // }, 
+  // },
   config = {
-    pages: [
-      'pages/home/home',
-      'pages/cart/cart',
-      'pages/user/user',
-    ],
+    pages: ['pages/home/home', 'pages/cart/cart', 'pages/user/user'],
     window: {
       navigationBarTitleText: '开课吧',
     },
     tabBar: {
-      selectedColor: "#b4282d",
-      list: [{
-        pagePath: "pages/home/home",
-        iconPath: "./assets/home.png",
-        selectedIconPath: "./assets/home-active.png",
-        text: "首页"
-      },
-      {
-        pagePath: "pages/cart/cart",
-        iconPath: "./assets/cart.png",
-        selectedIconPath: "./assets/cart-active.png",
-        text: "购物车"
-      },
+      selectedColor: '#b4282d',
+      list: [
+        {
+          pagePath: 'pages/home/home',
+          iconPath: './assets/home.png',
+          selectedIconPath: './assets/home-active.png',
+          text: '首页1',
+        },
+        {
+          pagePath: 'pages/cart/cart',
+          iconPath: './assets/cart.png',
+          selectedIconPath: './assets/cart-active.png',
+          text: '购物车',
+        },
 
-      {
-        pagePath: "pages/user/user",
-        iconPath: "./assets/user.png",
-        selectedIconPath: "./assets/user-active.png",
-        text: "个人"
-      }]
-    }
+        {
+          pagePath: 'pages/user/user',
+          iconPath: './assets/user.png',
+          selectedIconPath: './assets/user-active.png',
+          text: '个人',
+        },
+      ],
+    },
   }
 
-  componentDidMount() { }
+  componentDidMount() {}
 
-  componentDidShow() { }
+  componentDidShow() {}
 
-  componentDidHide() { }
+  componentDidHide() {}
 
-  componentDidCatchError() { }
+  componentDidCatchError() {}
 
   // 在 App 类中的 render() 函数没有实际作用
   // 请勿修改此函数

@@ -114,7 +114,7 @@ FROM nginx:latest
 RUN echo '<h1>Hello Docker !!!</h1>' > /usr/share/nginx/html/index.html
 
 # 进入nginx目录下
-docker built -t nginx:chiu .
+docker build -t nginx:chiu .
 
 # 启动
 docker run -p 8000:80 nginx:chiu
@@ -205,7 +205,7 @@ CMD ["pm2-runtime", "start", "process.yml"]
 docker build -t chiupm2 .
 
 # 启动
-docker run -p 3000:3000 -d chiunode
+docker run -p 3000:3000 -d chiupm2
 ```
 
 ## Compose 安装
@@ -245,5 +245,5 @@ services:
     image: mongo-express
     restart: always
     ports:
-      - 8000:8081
+      - 8081:8081
 ```
