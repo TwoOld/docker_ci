@@ -1,4 +1,4 @@
-echo Deploy Project
+# echo Deploy Project
 
 ls
 
@@ -7,4 +7,4 @@ ls
 # docker-compose down
 # docker-compose up -d --force-recreate --build
 
-echo Deploy end
+# echo Deploy end
