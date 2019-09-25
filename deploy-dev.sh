@@ -3,7 +3,7 @@ echo Deploy Project
 git pull
 
 cd frontend
-npm i
+npm run build:h5
 cd ..
 
 docker-compose down
