@@ -1,6 +1,5 @@
 echo Deploy Project
 
-cd frontend/
 ls
 
 # git pull
