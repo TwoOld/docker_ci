@@ -61,7 +61,7 @@ class App extends Component {
           pagePath: 'pages/home/home',
           iconPath: './assets/home.png',
           selectedIconPath: './assets/home-active.png',
-          text: '首页1',
+          text: '首页123',
         },
         {
           pagePath: 'pages/cart/cart',
