@@ -7,10 +7,11 @@ app.use(express.static('static'))
 
 app.get('/', (req, res) => res.send('Hello World!'))
 
-
 app.listen(3000, () => console.log('Example app listening on port 3000!'))
 
-const course = JSON.parse(fs.readFileSync(path.resolve(__dirname, './models/goods.json')).toString())
+const course = JSON.parse(
+  fs.readFileSync(path.resolve(__dirname, './models/goods.json')).toString(),
+)
 const allData = []
 course.tags.forEach(key => {
   course.data[key].forEach(cor => {
@@ -18,45 +19,49 @@ course.tags.forEach(key => {
   })
 })
 
-const mongo = require("./models/db");
-const testdata = require("./models/init");
+const mongo = require('./models/db')
+const testdata = require('./models/init')
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
-  res.header("Access-Control-Allow-Headers", "X-Requested-With");
-  res.header('Access-Control-Allow-Headers', 'Content-Type');
-  next();
-});
-
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*')
+  res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS')
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With')
+  res.header('Access-Control-Allow-Headers', 'Content-Type')
+  next()
+})
 
 app.get('/api/top', async (req, res) => {
-  const allData  = await mongo.col("goods").find().toArray()
+  const allData = await mongo
+    .col('goods')
+    .find()
+    .toArray()
   const newData = [...allData]
   newData.sort((a, b) => {
     return b.solded - a.solded
   })
   res.json({
     code: 0,
-    data: newData.slice(0, 5)
+    data: newData.slice(0, 2),
   })
 })
 
-app.get("/api/goods", async (req, res) => {
-  const allData = await mongo.col("goods").find().toArray()
+app.get('/api/goods', async (req, res) => {
+  const allData = await mongo
+    .col('goods')
+    .find()
+    .toArray()
   const page = req.query.page || 1
   const start = (page - 1) * 10
   const end = start + 10
   setTimeout(() => {
     res.json({
       code: 0,
-      data: allData.slice(start, end)
+      data: allData.slice(start, end),
     })
   }, 1000)
 })
 
 app.get('/api/detail', async (req, res) => {
-
   const { id } = req.query
   course.tags.forEach(key => {
     course.data[key].forEach(cor => {
@@ -73,7 +78,7 @@ app.get('/api/detail', async (req, res) => {
           code: 0,
           data: {
             detail: cor,
-          }
+          },
         })
       }
     })
@@ -83,30 +88,30 @@ app.get('/api/detail', async (req, res) => {
 app.post('/api/login', (req, res) => {
   const { username, passwd } = req.body
   console.log(username, passwd)
-  if (username == 'kaikeba' && passwd == "123") {
+  if (username == 'kaikeba' && passwd == '123') {
     return res.json({
       code: 0,
       data: {
         token: 'kaikebaisgood',
         role: 'admin',
         balance: 1000,
-        username: "kaikeba"
-      }
+        username: 'kaikeba',
+      },
     })
   }
-  if (username == 'dasheng' && passwd == "123") {
+  if (username == 'dasheng' && passwd == '123') {
     return res.json({
       code: 0,
       data: {
         token: 'kaikebaisgood',
         role: 'user',
         balance: 100,
-        username: 'dasheng'
-      }
+        username: 'dasheng',
+      },
     })
   }
   return res.json({
     code: -1,
-    msg: '密码错误'
+    msg: '密码错误',
   })
 })
