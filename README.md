@@ -89,10 +89,15 @@ docker exec -it ID前三位 /bin/bash
 ## Docker 运行过程
 
 - 镜像(Image)
+
   面向 Docker 的只读模板
+
 - 容器(Container)
+
   镜像的运行实例
+
 - 仓库(Registry)
+
   存储镜像的服务器
 
 ## Dockerfile 定制镜像
